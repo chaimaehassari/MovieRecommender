@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environnements virtuels
+venv/
+.venv/
+env/
+
+# Tests et couverture
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Éditeurs
+.vscode/
+.idea/
+
+# Variables d'environnement
+.env
+.env.*
+
+# Données et fichiers volumineux
+data/
+*.csv
+*.parquet
+
+# Système
+.DS_Store
+Thumbs.db
