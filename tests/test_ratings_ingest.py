@@ -37,3 +37,35 @@ def test_missing_columns_raises_error():
 def test_file_not_found_raises_error():
     with pytest.raises(FileNotFoundError):
         load_ratings("chemin/inexistant/ratings.csv")
+
+
+def test_clean_keeps_only_useful_columns():
+    df = pd.DataFrame(
+        {
+            "userId": [1],
+            "movieId": [10],
+            "rating": [4.0],
+            "y": [-2.5],
+            "movieId_orig": [1689],
+        }
+    )
+
+    result = clean_ratings(df)
+
+    assert list(result.columns) == ["userId", "movieId", "rating"]
+
+
+def test_clean_keeps_timestamp_when_present():
+    df = pd.DataFrame(
+        {
+            "userId": [1],
+            "movieId": [10],
+            "rating": [4.0],
+            "timestamp": [1000],
+            "extra": ["x"],
+        }
+    )
+
+    result = clean_ratings(df)
+
+    assert list(result.columns) == ["userId", "movieId", "rating", "timestamp"]
