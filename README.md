@@ -4,8 +4,8 @@
 MovieRecommender est un projet Python de recommandation de films basé sur les évaluations des utilisateurs.
 
 ## Fonctionnalités
-- Importation des évaluations (ratings-ingest)
-- - Création de la matrice utilisateurs-films : génération de la User-Item Matrix à partir des évaluations, voir [docs/user-item-matrix.md](docs/user-item-matrix.md) (TOUKIL Safaa)
+- Importation et nettoyage des évaluations MovieLens (ratings-ingest) (EL GAZZOUZI Ayoub)
+- Création de la matrice utilisateurs-films : génération de la User-Item Matrix à partir des évaluations, voir [docs/user-item-matrix.md](docs/user-item-matrix.md) (TOUKIL Safaa)
 - Calcul des similarités (similarity)
   - **Implémenté par Hiba :** Développement du calcul de similarité entre utilisateurs par Cosine Similarity, incluant la validation des entrées, la gestion des valeurs manquantes, la génération de la matrice de similarité et l'identification des utilisateurs les plus similaires.
   - 47 tests unitaires ajoutés et validés.
