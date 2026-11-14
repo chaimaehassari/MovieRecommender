@@ -1,3 +1,4 @@
+﻿
 # Python
 __pycache__/
 *.py[cod]
@@ -13,7 +14,7 @@ env/
 .coverage
 htmlcov/
 
-# Éditeurs
+# Editeurs
 .vscode/
 .idea/
 
@@ -21,13 +22,19 @@ htmlcov/
 .env
 .env.*
 
-# Données volumineuses (non versionnées)
+# Donnees completes et traitees
 data/raw/
 data/processed/
 
-# Fichiers de données
+# Autoriser les echantillons de test
+data/*
+!data/sample/
+data/sample/*
+!data/sample/*.csv
+
+# Fichiers volumineux
 *.parquet
 
-# Système
+# Systeme
 .DS_Store
 Thumbs.db
