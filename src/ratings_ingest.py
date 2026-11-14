@@ -43,3 +43,11 @@ def load_ratings(csv_path: Union[str, Path]) -> pd.DataFrame:
 
     raw_df = pd.read_csv(path)
     return clean_ratings(raw_df)
+
+
+def save_ratings(df: pd.DataFrame, output_path: Union[str, Path]) -> Path:
+    """Enregistre les évaluations nettoyées dans un fichier CSV."""
+    path = Path(output_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(path, index=False)
+    return path
