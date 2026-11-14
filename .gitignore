@@ -21,9 +21,11 @@ htmlcov/
 .env
 .env.*
 
-# Données et fichiers volumineux
-data/
-*.csv
+# Données volumineuses (non versionnées)
+data/raw/
+data/processed/
+
+# Fichiers de données
 *.parquet
 
 # Système
