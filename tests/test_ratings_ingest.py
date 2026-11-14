@@ -1,6 +1,6 @@
 import pandas as pd
 import pytest
-from src.ratings_ingest import clean_ratings, load_ratings
+from src.ratings_ingest import clean_ratings, load_ratings, save_ratings
 
 
 def test_load_and_clean_valid_ratings(tmp_path):
@@ -69,3 +69,40 @@ def test_clean_keeps_timestamp_when_present():
     result = clean_ratings(df)
 
     assert list(result.columns) == ["userId", "movieId", "rating", "timestamp"]
+
+
+def test_save_ratings_writes_csv_and_creates_folder(tmp_path):
+    df = pd.DataFrame(
+        {
+            "userId": [1, 4],
+            "movieId": [10, 40],
+            "rating": [5.0, 3.5],
+        }
+    )
+    output = tmp_path / "processed" / "ratings_clean.csv"
+
+    saved = save_ratings(df, output)
+
+    assert saved == output
+    assert output.exists()
+    reloaded = pd.read_csv(output)
+    assert list(reloaded.columns) == ["userId", "movieId", "rating"]
+    assert len(reloaded) == 2
+
+
+def test_saved_ratings_can_be_loaded_again(tmp_path):
+    df = pd.DataFrame(
+        {
+            "userId": [1, 4],
+            "movieId": [10, 40],
+            "rating": [5.0, 3.5],
+        }
+    )
+    output = tmp_path / "ratings_clean.csv"
+
+    save_ratings(df, output)
+    reloaded = load_ratings(output)
+
+    assert list(reloaded["userId"]) == [1, 4]
+    assert list(reloaded["movieId"]) == [10, 40]
+    assert list(reloaded["rating"]) == [5.0, 3.5]
