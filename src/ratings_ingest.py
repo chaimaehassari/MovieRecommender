@@ -4,6 +4,8 @@ import pandas as pd
 
 REQUIRED_COLUMNS = {"userId", "movieId", "rating"}
 
+KEPT_COLUMNS = ["userId", "movieId", "rating", "timestamp"]
+
 
 def clean_ratings(df: pd.DataFrame) -> pd.DataFrame:
     """Nettoie un DataFrame d'évaluations MovieLens."""
@@ -11,10 +13,11 @@ def clean_ratings(df: pd.DataFrame) -> pd.DataFrame:
     if missing:
         raise ValueError(f"Colonnes manquantes : {sorted(missing)}")
 
-    if df.empty:
-        return df.copy()
+    kept = [col for col in KEPT_COLUMNS if col in df.columns]
+    cleaned = df[kept].copy()
 
-    cleaned = df.copy()
+    if cleaned.empty:
+        return cleaned
 
     cleaned["userId"] = pd.to_numeric(cleaned["userId"], errors="coerce")
     cleaned["movieId"] = pd.to_numeric(cleaned["movieId"], errors="coerce")
