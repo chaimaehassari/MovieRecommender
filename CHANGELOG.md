@@ -1,5 +1,10 @@
 ﻿# Changelog
 
+## [1.0.1] - 2026-11-15
+
+### Fixed
+- Added the missing sample user-item matrix required by the similarity tests.
+
 ## [1.0.0] - 2026-11-14
 
 ### Added
